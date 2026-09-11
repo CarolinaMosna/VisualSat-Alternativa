@@ -1,14 +1,21 @@
 @import "./variables.css";
 
-*{
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-body{
- background: #010101;
+
+html,
+body {
+  background: #010101;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-p{
+p {
   color: var(--text-color);
   font-family: "Exo 2";
   font-style: normal;
@@ -17,34 +24,36 @@ p{
   letter-spacing: -0.034rem;
 }
 
-button{
+button {
   font-family: "Exo 2";
   font-weight: 700;
 }
 
-.text{
+.text {
   color: var(--text-color);
   font-family: "Exo 2";
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.034rem;
 }
 
-.title{
+.title {
   color: var(--primary-color);
   font-family: "Exo 2";
-  font-size: 6rem;
+  font-size: clamp(2.4rem, 6vw, 6rem);
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.102rem;
+  line-height: 1.1;
+  letter-spacing: -0.05rem;
 }
 
-.button{
+.button {
   background-color: var(--primary-color);
-  padding: 1rem 6rem;
+  padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1.5rem, 5vw, 6rem);
   border-radius: 4rem;
   border: none;
+  cursor: pointer;
+  max-width: 100%;
 }

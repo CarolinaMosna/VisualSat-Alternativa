@@ -1,7 +1,15 @@
-.swiper_component{
-    width: 80%;
+.swiper_component {
+  width: min(92%, 1200px);
+  padding: 0.5rem 0;
+  box-sizing: border-box;
 }
-.sat_img{
-    height: 20rem;
-    border: solid 4px var(--primary-color);
+
+.sat_img {
+  width: 100%;
+  height: clamp(14rem, 30vw, 20rem);
+  object-fit: cover;
+  border: solid 4px var(--primary-color);
+  border-radius: 4px;
+  display: block;
+  box-sizing: border-box;
 }

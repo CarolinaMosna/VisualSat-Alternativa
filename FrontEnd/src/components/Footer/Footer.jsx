@@ -16,7 +16,7 @@ const Footer = () => {
                 <ul>
                     {
                         satellites.map(satellite => (
-                            <li>{satellite.title}</li>
+                            <li key={satellite.id}>{satellite.title}</li>
                         ))
                     }
                 </ul>

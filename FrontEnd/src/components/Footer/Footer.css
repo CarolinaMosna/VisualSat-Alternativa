@@ -1,49 +1,95 @@
-.footerContainer{
-    width: 100vw;
-    display: flex;
+.footerContainer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--footer-background-color);
+  color: var(--text-color);
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem);
+  gap: 1.5rem;
+}
+
+.footerTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.footerTitle h5 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-family: "Exo 2";
+  font-weight: 700;
+}
+
+.footerTitle span {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  opacity: 0.8;
+}
+
+.footerContent {
+  width: min(92%, 800px);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  box-sizing: border-box;
+  gap: 1.5rem;
+}
+
+.footerlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footerlinks p {
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 700;
+}
+
+.footerlinks ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.footerlinks li {
+  list-style: none;
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  opacity: 0.85;
+}
+
+.footerOficialData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footerOficialData p {
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 700;
+}
+
+.footerOficialData span {
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .footerContent {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: var(--footer-background-color);
-    color: var(--text-color);
-    padding: 2rem 0;
-}
+    text-align: center;
+    gap: 2rem;
+  }
 
-.footerTitle{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .footerlinks ul {
     align-items: center;
-    background-color: var(--footer-background-color);
-}
-.footerTitle h5{
-    font-size: 1.5rem;
-    background-color: var(--footer-background-color);
-}
-.footerTitle span{
-    background-color: var(--footer-background-color);
-}
-
-.footerContent{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--footer-background-color);
-}
-
-.footerlinks p{
-    background-color: var(--footer-background-color);
-}
-.footerlinks li{
-    list-style: none;
-    background-color: var(--footer-background-color);
-}
-
-.footerOficialData p{
-    background-color: var(--footer-background-color);
-}
-
-.footerOficialData span{
-    background-color: var(--footer-background-color);
+  }
 }

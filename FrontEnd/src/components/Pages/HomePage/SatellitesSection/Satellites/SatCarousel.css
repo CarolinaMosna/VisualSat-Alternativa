@@ -1,12 +1,17 @@
-.sat_gallery{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 50%;
-    width: 100%;
+.sat_gallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  gap: clamp(1rem, 2vh, 1.5rem);
+  box-sizing: border-box;
 }
 
-.images_cointaner_title{
-    border-bottom: solid 2px var(--primary-color);
+.images_cointaner_title {
+  border-bottom: solid 2px var(--primary-color);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  margin-bottom: 0.5rem;
+  text-align: center;
 }

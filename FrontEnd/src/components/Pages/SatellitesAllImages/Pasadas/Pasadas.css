@@ -1,59 +1,91 @@
-.pasadasCointainer{
-    background-color: var(--background-grey);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2rem 3rem 2rem;
-    border-radius: 1rem;
-    width: 80%;
-    height: 30vh;
-    gap: 25px;
+.pasadasCointainer {
+  background-color: var(--background-grey);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+  border-radius: 1rem;
+  width: min(92%, 1100px);
+  height: auto;
+  min-height: fit-content;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  box-sizing: border-box;
 }
 
-.pasadasTitle h4{
-    font-size: 2rem;
-    border-bottom: 2px solid var(--primary-color);
+.pasadasTitle h4 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.25rem;
 }
 
-.pasadasDataContainer{
-    display: flex;
-    align-items: center;
-    width: 100%;
+.pasadasDataContainer {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.pasadasData{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+.pasadasData {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2vw, 25px);
+  padding: 0 0.75rem;
+  box-sizing: border-box;
 }
 
-.pasadasData h5{
-    font-size: 2rem;
-    border-bottom: 2px solid var(--primary-color);
+.pasadasData h5 {
+  font-size: clamp(1.1rem, 1.8vw, 1.8rem);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.25rem;
+  text-align: center;
 }
 
-.eachPasadaContainer{
-    font-size: 1rem;
+.leftContainer {
+  border-right: 1px solid var(--primary-color);
 }
 
-.leftContainer{
-    border-right: 1px solid var(--primary-color);
+.rightContainer {
+  border-left: 1px solid var(--primary-color);
 }
 
-.rightContainer{
-    border-left: 1px solid var(--primary-color);
-}
-
-.eachPasadaContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.eachPasadaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
 .eachPasadaContainer p {
-    font-size: 1.5rem;
+  font-size: clamp(0.78rem, 1.3vw, 1.25rem);
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+@media (max-width: 850px) {
+  .pasadasDataContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pasadasData {
+    width: 100%;
+    padding: 0;
+  }
+
+  .leftContainer {
+    border-right: none;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 1.75rem;
+  }
+
+  .rightContainer {
+    border-left: none;
+  }
 }
