@@ -1,9 +1,23 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from controllers.image_controller import router as imagen_router
+from controllers.pasadas_controller import router as pasadas_router
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 images_raw_path = "/home/javiermaita/Imágenes/prueba"
 
@@ -23,3 +37,4 @@ app.mount(
 
 # Controladores
 app.include_router(imagen_router)
+app.include_router(pasadas_router)
