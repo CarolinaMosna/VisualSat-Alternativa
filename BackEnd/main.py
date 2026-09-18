@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
@@ -19,6 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+images_raw_path = os.getenv("IMAGES_PATH")
 images_raw_path = "/home/javiermaita/Imágenes/prueba"
 
 # Archivos estáticos generales

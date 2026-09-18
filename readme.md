@@ -67,15 +67,15 @@ Obtiene la lista completa de las imagenes tomadas por el satelite solicitado
 Contar con entorno python local (opcional)
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+  python3 -m venv venv
+  source venv/bin/activate
 ```
 
 Descargar las librerías FastApi (framework), uvicorn (Servidor ASGI).
 ```bash
-pip install fastapi uvicorn
+  pip install -r requirements.txt
 ```
 Levantamos servidor
 ```bash
-	uvicorn main:app --host 0.0.0.0 --port 8000 
+  IMAGES_PATH="[RUTA]" uvicorn main:app --host 0.0.0.0 --port 8000
 ```
