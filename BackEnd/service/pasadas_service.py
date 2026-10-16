@@ -1,44 +1,41 @@
 # app/services/pasadas_service.py
 
+import requests
+import logging
+
+logger = logging.getLogger(__name__)
+
 class PasadasService:
     def __init__(self):
-        self.pasadas = [
-    {
-        "sat_name": "STARLINK-2257",
-        "sat_id": 47787,
-        "aos": "2026-09-23T20:42:11.885729+00:00",
-        "los": "2026-09-23T20:53:55.203259+00:00",
-        "elev_max": "75.5\u00b0"
-    },
-    {
-        "sat_name": "STARLINK-2413",
-        "sat_id": 47827,
-        "aos": "2026-09-24T04:06:51.878335+00:00",
-        "los": "2026-09-24T04:18:36.128705+00:00",
-        "elev_max": "88.9\u00b0"
-    },
-    {
-        "sat_name": "STARLINK-2257",
-        "sat_id": 47787,
-        "aos": "2026-09-24T20:11:12.104374+00:00",
-        "los": "2026-09-24T20:22:55.421904+00:00",
-        "elev_max": "86.9\u00b0"
-    },
-    {
-        "sat_name": "STARLINK-2413",
-        "sat_id": 47827,
-        "aos": "2026-09-25T03:35:50.961099+00:00",
-        "los": "2026-09-25T03:47:35.211469+00:00",
-        "elev_max": "72.0\u00b0"
-    },
-    {
-        "sat_name": "STARLINK-2257",
-        "sat_id": 47787,
-        "aos": "2026-09-25T04:25:37.380289+00:00",
-        "los": "2026-09-25T04:37:06.650199+00:00",
-        "elev_max": "42.7\u00b0"
-    }
-]
+
+        self.orbit_url = "http://127.0.0.1:8001"
+
+    def hacer_peticion(self, endpoint: str):
+
+        url = f"{self.orbit_url}{endpoint}"
+
+        try:
+            resp = requests.get(url, timeout=5)
+
+            if resp.status_code == 200:
+                return resp.json()
+            else:
+                logger.warning(f"Orbit respondió con status {resp.status_code} al pedir {url}")
+                return []
+
+        except requests.exceptions.Timeout:
+            logger.error(f"La petición a Orbit ({url}) falló por timeout")
+            return []
+
+        except requests.exceptions.RequestException as e: # Por si Orbit está apagado o hay algún problema de red
+            logger.error(f"Error de conexión con Orbit en {url}: {e}")
+            return []
 
     def obtener_todas(self):
-        return self.pasadas
+        return self.hacer_peticion("/passes")
+
+    def obtener_por_satelite(self, sat_id: str):
+        return self.hacer_peticion(f"/passes/{sat_id}")
+
+    def obtener_proxima(self):
+        return self.hacer_peticion("/next")

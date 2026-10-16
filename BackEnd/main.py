@@ -1,11 +1,27 @@
 import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+import argparse
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from controllers import image_controller, satelite_controller
 from controllers.image_controller import router as imagen_router
 from controllers.pasadas_controller import router as pasadas_router
+from controllers.satelite_controller import router as satelites_router
+
+# Configuración de argumentos para rutas de archivos
+parser = argparse.ArgumentParser()
+parser.add_argument("--images-dir", default="BackEnd/images/raw", help="Ruta a la carpeta donde se almacenan las imágenes satelitales")
+parser.add_argument("--satelites-file", default="BackEnd/data/satelites.json", help="Ruta al archivo JSON con la información de los satélites")
+
+args = parser.parse_known_args()
+
+image_controller.imagen_service.images_raw_path = args.images_dir
+image_controller.imagen_service.actualizar_list_imagenes()
+
+satelite_controller.satelite_service.archivo_satelites = args.satelites_file
+satelite_controller.satelite_service.satelites = satelite_controller.satelite_service.cargar_satelites()
 
 app = FastAPI()
 
@@ -20,8 +36,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-images_raw_path = os.getenv("IMAGES_PATH")
-images_raw_path = "/home/javiermaita/Imágenes/prueba"
+# Modifico las rutas que estaban definidas antes (hardcodeadas), ahora usando el parser
+images_raw_path = args.images_dir
 
 # Archivos estáticos generales
 app.mount(
@@ -40,3 +56,4 @@ app.mount(
 # Controladores
 app.include_router(imagen_router)
 app.include_router(pasadas_router)
+app.include_router(satelites_router)

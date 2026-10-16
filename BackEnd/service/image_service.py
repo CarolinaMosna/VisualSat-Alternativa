@@ -8,13 +8,15 @@ from fastapi import Request
 
 class ImagenService:
 
-    def __init__(self):
-        #Para unificar el uso de la variable de entorno, pero dejo la ruta de prueba por default
-        self.images_raw_path = os.getenv("IMAGES_PATH", "/home/javiermaita/Imágenes/prueba") 
+    def __init__(self, images_path="BackEnd/images/raw"): #Carpeta default x las dudas
+        self.images_raw_path = images_path
 
+        if os.path.exists(self.images_raw_path):
         #Cargo al inicio las imágenes en memoria (guardo el listdir en una variable)
-        self.imagenes_en_memoria = os.listdir(self.images_raw_path)
-
+            self.imagenes_en_memoria = os.listdir(self.images_raw_path)
+        # Inicializo con lista vacía por si la carpeta no está, para que no se rompa
+        else:
+            self.images_raw_path = []
 
     def obtener_nombres_imagenes(self):
        
@@ -22,7 +24,12 @@ class ImagenService:
 
     def actualizar_list_imagenes(self):
         #Reemplaza las imágenes en la RAM con las actualizaciones
-        self.imagenes_en_memoria = os.listdir(self.images_raw_path)
+        
+        if os.path.exists(self.images_raw_path):
+            self.imagenes_en_memoria = os.listdir(self.images_raw_path)
+        else:
+            self.imagenes_en_memoria = []
+                
         return len(self.imagenes_en_memoria) # Devuelve el largo de la lista sólo para controlar
 
     def obtener_imagenes(self, request: Request):
