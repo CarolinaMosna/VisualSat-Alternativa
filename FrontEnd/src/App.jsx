@@ -5,7 +5,6 @@ import HomePage from './components/Pages/HomePage/HomePage'
 import Header from "./components/Home/Header/Header";
 import SatellitesAllImages from "./components/Pages/SatellitesAllImages/SatellitesAllImages";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
-import PasadasPage from "./components/Pages/PasadasPage/PasadasPage"
 import { PasadasProvider } from "./components/Context/PasadasContext";
 
 function App() {
@@ -13,12 +12,11 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop/>
-      <Header/>
       <PasadasProvider>
+        <Header/>
         <Routes>
           <Route path="/" element={<HomePage/>}/> // Página principal
           <Route path="/sat/:satellitename" element={<SatellitesAllImages/>}/> // Informacion Satelite
-          <Route path="/pasadas" element={<PasadasPage/>}/>
         </Routes>
       </PasadasProvider>
       <Footer/>
